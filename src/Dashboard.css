@@ -41,3 +41,22 @@
     width: 0 !important;
     overflow: hidden;
 }
+
+.quill-editor .ql-container {
+    min-height: 200px;
+  }
+
+  /* In your CSS file or style tag */
+.dropzone {
+    border: 2px dashed #007bff;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .dropzone p {
+    margin: 0;
+    color: #007bff;
+  }
+  
