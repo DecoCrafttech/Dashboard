@@ -1,5 +1,5 @@
 {
-  "name": "admindashboarddemo",
+  "name": "gccconnect",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,13 +10,16 @@
     "ag-grid-react": "^32.0.2",
     "bootstrap": "^5.3.3",
     "quill": "^2.0.2",
-    "react": "^18.2.0",
+    "react": "^18.3.1",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
     "react-hot-toast": "^2.4.1",
     "react-image-crop": "^11.0.6",
     "react-quill": "^2.0.0",
+    "react-router-dom": "^7.1.1",
     "react-scripts": "5.0.1",
+    "react-toastify": "^11.0.3",
+    "router-dom": "^3.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
