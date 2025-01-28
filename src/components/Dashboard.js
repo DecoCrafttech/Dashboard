@@ -1,118 +1,84 @@
 import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
-import 'ag-grid-community/styles/ag-grid.css';
-import 'ag-grid-community/styles/ag-theme-alpine.css';
+import { Link, Outlet } from 'react-router-dom';
+import '../Dashboard.css'; // Custom CSS for unique styles
+import { CgClose } from 'react-icons/cg';
 
-function Dashboard() {
-    const [style, setStyle] = useState("navbar-nav bg-gradient-sidebar sidebar sidebar-dark accordion");
+function SmartDashboard() {
+    const [isSmartNavCollapsed, setSmartNavCollapsed] = useState(false);
 
-    const changeStyle = () => {
-        if (style === "navbar-nav bg-gradient-sidebar sidebar sidebar-dark accordion") {
-            setStyle("navbar-nav bg-gradient-sidebar sidebar sidebar-dark accordion toggled");
-        } else {
-            setStyle("navbar-nav bg-gradient-sidebar sidebar sidebar-dark accordion");
-        }
-    };
-
-    const changeStyle1 = () => {
-        if (style === "navbar-nav bg-gradient-sidebar sidebar sidebar-dark accordion") {
-            setStyle("navbar-nav bg-gradient-sidebar sidebar sidebar-dark accordion toggled1");
-        } else {
-            setStyle("navbar-nav bg-gradient-sidebar sidebar sidebar-dark accordion");
-        }
+    const toggleSmartNav = () => {
+        setSmartNavCollapsed(!isSmartNavCollapsed);
     };
 
     return (
-        <div>
-            <body id="page-top">
-                {/* Page Wrapper */}
-                <div id="wrapper">
-                    {/* Sidebar */}
-                    <ul className={style} id="accordionSidebar">
-                        {/* Sidebar Brand */}
-                        <a className="sidebar-brand mt-3 d-flex align-items-center justify-content-between" href="#">
-                            <div className="sidebar-brand-text me-2">GCC Connect</div>
-                            <div className="text-center d-none d-md-inline">
-                                <button
-                                    className="rounded border-0"
-                                    id="sidebarToggle"
-                                    onClick={changeStyle}
-                                ></button>
-                            </div>
-                        </a>
+        <div id="smart-dashboard" className="d-flex">
+            {/* Smart Navigation (Sidebar) */}
+            <nav className={`smart-nav ${isSmartNavCollapsed ? 'collapsed' : ''}`} id="smartNav">
+                <div className="smart-nav-header d-flex justify-content-between align-items-center">
+                    <h4 className="text-light">GCC Connect</h4>
+                    <button
+                        className="btn btn-sm btn-light smart-nav-toggle-btn"
+                        onClick={toggleSmartNav}
+                    >
+                        <CgClose />
+                    </button>
+                </div>
+                <ul className="nav flex-column py-4 ">
+                    <li className="nav-item ">
+                        {/* <a href="/" className="nav-link">
+                            <i className="fas fa-chart-line"></i> Blog Dashboard
+                        </a> */}
+                        <Link onClick={toggleSmartNav} className="nav-link" to={"/"}><i className="fas fa-chart-line"></i> Blog Dashboard
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link onClick={toggleSmartNav} className="nav-link" to={"/login"}><i className="fas fa-user"></i>  Teams Dashboard
+                        </Link>
 
-                        {/* Divider */}
-                        <hr className="sidebar-divider my-0 mb-5" />
 
-                        {/* Nav Items */}
-                        <li className="nav-item active">
-                            <a className="nav-link" href="/">
-                                <i className="fas fa-fw fa-tachometer-alt"></i>
-                                <span>Blog Dashboard</span>
-                            </a>
-                        </li>
+                    </li>
+                    <li className="nav-item">
+                        <Link onClick={toggleSmartNav} className="nav-link" to={"/jobs"}> <i className="fas fa-briefcase"></i>  Jobs Dashboard
+                        </Link>
 
-                        <li className="nav-item active">
-                            <a className="nav-link" href="/login">
-                                <i className="fas fa-fw fa-tachometer-alt"></i>
-                                <span>Login</span>
-                            </a>
-                        </li>
+                    </li>
+                </ul>
+                <div className="smart-nav-footer">
 
-                        <li className="nav-item active">
-                            <a className="nav-link" href="/jobs">
-                                <i className="fas fa-fw fa-tachometer-alt"></i>
-                                <span>Jobs Dashboard</span>
-                            </a>
-                        </li>
 
-                        {/* Divider */}
-                        <hr className="sidebar-divider" />
+                    <Link onClick={toggleSmartNav} className="nav-link" to={"/jobs"}> <i className="fas fa-sign-out-alt"></i>  Logout
+                    </Link>
+                </div>
+            </nav>
 
-                        {/* Logout */}
-                        <div className="fixed-bottom">
-                            <li className="nav-item">
-                                <a className="nav-link" href="/">
-                                    <i className="fas fa-fw fa-table"></i>
-                                    <span className="collapse-item">Logout</span>
-                                </a>
-                            </li>
-                        </div>
-                    </ul>
+            {/* Main Content */}
+            <div id="smart-main-content" className="flex-grow-1 d-flex flex-column">
+                {/* Top Bar */}
+                <nav className="navbar  navbar navbarbggcc shadow py-3 fixed-top">
+                    <span  className="navbar-brand col-1">GCC Connect</span>
+                    <button
+                        className="btn btn-link d-lg-none smart-nav-toggle-btn"
+                        onClick={toggleSmartNav}
+                    >
+                        <i className="fas fa-bars"></i>
+                    </button>
 
-                    {/* Content Wrapper */}
-                    <div id="content-wrapper" className="d-flex flex-column">
-                        {/* Main Content */}
-                        <div id="content">
-                            <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                                <button
-                                    id="sidebarToggleTop"
-                                    className="btn btn-link d-md-none rounded-circle mr-3"
-                                    onClick={changeStyle1}
-                                >
-                                    <i className="fa fa-bars"></i>
-                                </button>
-                            </nav>
+                </nav>
 
-                            {/* Page Content */}
-                            <div className="container-fluid">
-                                <Outlet />
-                            </div>
-                        </div>
-
-                        {/* Footer */}
-                        <footer className="sticky-footer bg-white">
-                            <div className="container my-auto">
-                                <div className="copyright text-center my-auto">
-                                    <span>Copyright &copy; GCC CONNECT 2025</span>
-                                </div>
-                            </div>
-                        </footer>
+                {/* Scrollable Outlet */}
+                <div className="content-wrapper bgcontentoutlet flex-grow-1 overflow-auto mt-5">
+                    <div className="container-fluid  pt-4">
+                        <Outlet />
                     </div>
                 </div>
-            </body>
+
+                {/* Footer */}
+                <footer className="smart-footer text-center py-3 bg-light shadow">
+                    <span>&copy; GCC Connect 2025</span>
+                </footer>
+            </div>
         </div>
     );
 }
 
-export default Dashboard;
+export default SmartDashboard;

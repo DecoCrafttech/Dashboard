@@ -60,3 +60,136 @@
     color: #007bff;
   }
   
+
+  /* General Layout */
+#smart-dashboard {
+    height: 100vh;
+    overflow: hidden;
+    background-color: #f5f7fa;
+}
+
+/* Smart Navigation (Sidebar) */
+.smart-nav {
+    width: 260px;
+    background-color: #042126; /* Dark blue-gray */
+    color: #ecf0f1; /* Light gray */
+    transition: all 0.3s ease-in-out;
+}
+
+.smart-nav.collapsed {
+    background-color: #042126 ;
+}
+
+.smart-nav .smart-nav-header {
+    padding: 1rem;
+    background-color: #1a252f; /* Darker shade for header */
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.smart-nav .smart-nav-toggle-btn {
+    border: none;
+    background: transparent;
+    color: #ecf0f1;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.smart-nav .nav-link {
+    color: #ecf0f1;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s;
+}
+
+.smart-nav .nav-link i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.smart-nav .nav-link:hover {
+    background-color: #34495e; /* Hover effect */
+    text-decoration: none;
+}
+
+.smart-nav-footer {
+    position: absolute;
+    bottom: 0;
+    padding: 1rem;
+    
+}
+
+/* Main Content */
+#smart-main-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    z-index: 1030;
+}
+
+.navbar-brand{
+    padding-left: 20px;
+    
+}
+.content-wrapper {
+    padding: 1rem;
+    overflow-y: auto;
+    background-color: #ffffff; /* White background for content */
+}
+
+/* Footer */
+.smart-footer {
+    position: sticky;
+    bottom: 0;
+    background-color: #ecf0f1; /* Light gray */
+    color: #2c3e50; /* Dark text for footer */
+}
+
+/* Scrollable Content */
+.content-wrapper {
+    padding-bottom: 60px; /* Prevent overlap with footer */
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .smart-nav {
+        position: fixed;
+        height: 100%;
+        z-index: 1040;
+        transform: translateX(-260px);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .smart-nav.collapsed {
+        transform: translateX(0);
+    }
+
+    #smart-main-content {
+        margin-left: 0 !important;
+    }
+}
+
+/* Hover Animation for Sidebar */
+.smart-nav .nav-link:hover {
+   /* Slight hover animation */
+    background-color: #2abc2a; /* Accent color */
+}
+
+/* Smooth Transition */
+.smart-nav,
+.smart-nav .nav-link,
+.content-wrapper {
+    transition: all 0.3s ease-in-out;
+}
+.navbarbggcc{
+    background-color: #fff;
+    
+}
+
+.bgcontentoutlet{
+    background-color: #eaf2ff;
+}

@@ -1,0 +1,116 @@
+/* General Layout */
+#smart-dashboard {
+    height: 100vh;
+    overflow: hidden;
+    background-color: #f9f9fb; /* Neutral background color for better readability */
+}
+
+/* Smart Sidebar */
+.smart-sidebar {
+    width: 280px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: -280px; /* Hidden by default */
+    background-color: #1f2937; /* Dark gray-blue */
+    color: #f3f4f6; /* Light gray */
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s ease;
+    z-index: 1050; /* Above top bar */
+}
+
+.smart-sidebar.open {
+    left: 0;
+}
+
+.smart-sidebar-header {
+    padding: 1.5rem 1.25rem;
+    background-color: #111827; /* Slightly darker shade for header */
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.smart-sidebar-toggle-btn {
+    background: transparent;
+    border: none;
+    color: #f3f4f6;
+    cursor: pointer;
+    font-size: 1.5rem;
+    margin-left: auto;
+}
+
+.smart-sidebar .nav-link {
+    color: #f3f4f6;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s;
+    border-radius: 5px;
+    margin: 0.25rem 1rem;
+}
+
+.smart-sidebar .nav-link:hover {
+    background-color: #374151; /* Slight hover effect */
+    color: #ffffff;
+    transform: translateX(10px); /* Slight hover animation */
+}
+
+.smart-sidebar .nav-link i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.smart-sidebar-footer {
+    position: absolute;
+    bottom: 1rem;
+    width: calc(100% - 2rem);
+    padding: 1rem;
+}
+
+/* Main Content */
+#smart-main-content {
+    margin-left: 0; /* Default without sidebar open */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-wrapper {
+    background-color: #ffffff; /* White for contrast */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin: 1rem;
+    overflow-y: auto;
+}
+
+/* Top Bar */
+.navbar {
+    z-index: 1040; /* Below the sidebar */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+.smart-footer {
+    background-color: #f9f9fb;
+    color: #1f2937;
+    font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .smart-sidebar {
+        width: 260px;
+        left: -260px; /* Hidden by default */
+    }
+
+    .smart-sidebar.open {
+        left: 0;
+    }
+
+    #smart-main-content {
+        margin-left: 0; /* Main content takes full width */
+    }
+}

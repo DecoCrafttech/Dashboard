@@ -12615,3 +12615,36 @@ body.sidebar-toggled footer.sticky-footer {
 }
 
 
+#dashboard #wrapper {
+    height: 100vh;
+    overflow: hidden;
+}
+
+#dashboard .sidebar {
+    height: 100vh;
+    overflow-y: auto;
+    transition: all 0.3s ease-in-out;
+}
+
+#dashboard .sidebar.toggled {
+    margin-left: -250px;
+}
+
+#dashboard #content-wrapper {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#dashboard #content {
+    overflow-y: auto;
+    padding-bottom: 70px; /* To avoid overlap with footer */
+}
+
+.sticky-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1030;
+}
