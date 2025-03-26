@@ -13,8 +13,8 @@ const BlogHandlingPage = () => {
     imageUrl: "",
     imageAlt: "",
     content: "",
-    seoTitle: "",
-    seoDescription: "",
+    // seoTitle: "",
+    // seoDescription: "",
   });
   const [blogs, setBlogs] = useState([]);
   const [editIndex, setEditIndex] = useState(null);
@@ -25,8 +25,8 @@ const BlogHandlingPage = () => {
     const errors = {};
     if (!blogInput.heading.trim()) errors.heading = "Heading is required.";
     if (!blogInput.content.trim()) errors.content = "Content is required.";
-    if (!blogInput.seoTitle.trim()) errors.seoTitle = "SEO Title is required.";
-    if (!blogInput.seoDescription.trim()) errors.seoDescription = "SEO Description is required.";
+    // if (!blogInput.seoTitle.trim()) errors.seoTitle = "SEO Title is required.";
+    // if (!blogInput.seoDescription.trim()) errors.seoDescription = "SEO Description is required.";
     return errors;
   };
 
@@ -61,8 +61,7 @@ const BlogHandlingPage = () => {
       imageUrl: "",
       imageAlt: "",
       content: "",
-      seoTitle: "",
-      seoDescription: "",
+     
     });
     setErrors({});
     setEditIndex(null);
@@ -81,6 +80,19 @@ const BlogHandlingPage = () => {
     setBlogs(blogs.filter((_, i) => i !== index));
     toast.success("Blog deleted successfully!");
   };
+
+  //image upload 
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setBlogInput((prev) => ({ ...prev, imageUrl: reader.result }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
 
   return (
     <div className="container py-4 ">
@@ -175,116 +187,114 @@ const BlogHandlingPage = () => {
                 ></button>
               </div>
               <div className="modal-body">
-                {/* {Object.keys(errors).length > 0 && (
-                  <div className="alert alert-danger">
-                    {Object.values(errors).map((error, index) => (
-                      <p key={index}>{error}</p>
-                    ))}
+                <div className="row">
+                  {/* Heading - col-6 */}
+                  <div className="mb-3 col-6">
+                    <label htmlFor="heading" className="form-label">
+                      Heading
+                    </label>
+                    <input
+                      type="text"
+                      id="heading"
+                      className={`form-control ${errors.heading ? "is-invalid" : ""}`}
+                      value={blogInput.heading}
+                      onChange={(e) =>
+                        setBlogInput({ ...blogInput, heading: e.target.value })
+                      }
+                    />
                   </div>
-                )} */}
 
-                <div className="mb-3">
-                  <label htmlFor="heading" className="form-label">
-                    Heading
-                  </label>
-                  <input
-                    type="text"
-                    id="heading"
-                    className={`form-control ${errors.heading ? "is-invalid" : ""}`}
-                    value={blogInput.heading}
-                    onChange={(e) =>
-                      setBlogInput({ ...blogInput, heading: e.target.value })
-                    }
-                  />
+                  {/* Subheading - col-6 */}
+                  <div className="mb-3 col-6">
+                    <label htmlFor="subHeading" className="form-label">
+                      Subheading
+                    </label>
+                    <input
+                      type="text"
+                      id="subHeading"
+                      className="form-control"
+                      value={blogInput.subHeading}
+                      onChange={(e) =>
+                        setBlogInput({ ...blogInput, subHeading: e.target.value })
+                      }
+                    />
+                  </div>
                 </div>
 
-                <div className="mb-3">
-                  <label htmlFor="subHeading" className="form-label">
-                    Subheading
-                  </label>
-                  <input
-                    type="text"
-                    id="subHeading"
-                    className="form-control"
-                    value={blogInput.subHeading}
-                    onChange={(e) =>
-                      setBlogInput({ ...blogInput, subHeading: e.target.value })
-                    }
-                  />
+                <div className="row">
+                  {/* Image Upload - col-6 */}
+                  <div className="mb-3 col-12">
+                    <label htmlFor="imageUpload" className="form-label">
+                      Upload Image
+                    </label>
+                    <input
+                      type="file"
+                      id="imageUpload"
+                      className="form-control"
+                      accept="image/*"
+                      onChange={(e) => handleImageUpload(e)}
+                    />
+                  </div>
+
+                  {/* Image Alt - col-6 */}
+                  <div className="mb-3 col-12">
+                    <label htmlFor="imageAlt" className="form-label">
+                      Image Alt Text
+                    </label>
+                    <input
+                      type="text"
+                      id="imageAlt"
+                      className="form-control"
+                      value={blogInput.imageAlt}
+                      onChange={(e) =>
+                        setBlogInput({ ...blogInput, imageAlt: e.target.value })
+                      }
+                    />
+                  </div>
                 </div>
 
-                <div className="mb-3">
-                  <label htmlFor="imageUrl" className="form-label">
-                    Image URL
-                  </label>
-                  <input
-                    type="text"
-                    id="imageUrl"
-                    className="form-control"
-                    value={blogInput.imageUrl}
-                    onChange={(e) =>
-                      setBlogInput({ ...blogInput, imageUrl: e.target.value })
-                    }
-                  />
-                </div>
+                {/* Image Preview */}
+                {blogInput.imageUrl && (
+                  <div className="mt-3 text-center">
+                    <img src={blogInput.imageUrl} alt="Uploaded Preview" className="img-fluid" style={{ maxWidth: "200px", borderRadius: "5px" }} />
+                  </div>
+                )}
 
-                <div className="mb-3">
-                  <label htmlFor="imageAlt" className="form-label">
-                    Image Alt Text
-                  </label>
-                  <input
-                    type="text"
-                    id="imageAlt"
-                    className="form-control"
-                    value={blogInput.imageAlt}
-                    onChange={(e) =>
-                      setBlogInput({ ...blogInput, imageAlt: e.target.value })
-                    }
-                  />
-                </div>
+                {/* <div className="row"> */}
+                  {/* SEO Title - col-6 */}
+                  {/* <div className="mb-3 col-6">
+                    <label htmlFor="seoTitle" className="form-label">
+                      SEO Title
+                    </label>
+                    <input
+                      type="text"
+                      id="seoTitle"
+                      className={`form-control ${errors.seoTitle ? "is-invalid" : ""}`}
+                      value={blogInput.seoTitle}
+                      onChange={(e) =>
+                        setBlogInput({ ...blogInput, seoTitle: e.target.value })
+                      }
+                    />
+                  </div> */}
+                {/* </div> */}
 
-                <div className="mb-3">
-                  <label htmlFor="seoTitle" className="form-label">
-                    SEO Title
-                  </label>
-                  <input
-                    type="text"
-                    id="seoTitle"
-                    className={`form-control ${errors.seoTitle ? "is-invalid" : ""}`}
-                    value={blogInput.seoTitle}
-                    onChange={(e) =>
-                      setBlogInput({ ...blogInput, seoTitle: e.target.value })
-                    }
-                  />
-                </div>
-
-                <div className="mb-3">
-                  <label htmlFor="seoDescription" className="form-label">
-                    SEO Description
-                  </label>
-                  <textarea
-                    id="seoDescription"
-                    className={`form-control ${errors.seoDescription ? "is-invalid" : ""
-                      }`}
-                    value={blogInput.seoDescription}
-                    onChange={(e) =>
-                      setBlogInput({ ...blogInput, seoDescription: e.target.value })
-                    }
-                  ></textarea>
-                </div>
-
-                <div className="mb-3">
+                {/* Content - Full Width (col-12) with increased height */}
+                <div className="mb-3 col-12">
                   <label htmlFor="content" className="form-label">
                     Content
                   </label>
-                  <ReactQuill
-                    value={blogInput.content}
-                    onChange={(value) =>
-                      setBlogInput({ ...blogInput, content: value })
-                    }
-                  />
+                  <div style={{ height: "300px" }}> {/* Adjusted Height */}
+                    <ReactQuill
+                      value={blogInput.content}
+                      onChange={(value) =>
+                        setBlogInput({ ...blogInput, content: value })
+                      }
+                      style={{ height: "250px" }} // Adjust height inside Quill
+                    />
+                  </div>
                 </div>
               </div>
+
               <div className="modal-footer">
                 <button
                   type="button"

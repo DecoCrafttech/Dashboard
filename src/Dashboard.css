@@ -172,19 +172,30 @@
         margin-left: 0 !important;
     }
 }
+.smart-nav .nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s;
+    font-weight: 400;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin: 10px;
 
-/* Hover Animation for Sidebar */
-.smart-nav .nav-link:hover {
-   /* Slight hover animation */
+}
+
+.smart-nav .nav-link:hover,
+.smart-nav .nav-link.active {
     background-color: #2abc2a; /* Accent color */
+    font-weight: 500;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+
 }
 
-/* Smooth Transition */
-.smart-nav,
-.smart-nav .nav-link,
-.content-wrapper {
-    transition: all 0.3s ease-in-out;
-}
 .navbarbggcc{
     background-color: #fff;
     
