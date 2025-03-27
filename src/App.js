@@ -8,13 +8,13 @@ import JobHandlingPage from './components/JobHandlingPage';
 
 function App() {
   return (
-<Routes basename={process.env.PUBLIC_URL}>
-  <Route path='/' element={<Dashboard />} >
-  <Route index element={<BlogHandlingPage />}/>
-  <Route path='/login' element={<Login />} />
-  <Route path='/jobs' element={<JobHandlingPage />} />
-  </Route>
-</Routes>
+    <Routes basename={process.env.PUBLIC_URL}>
+      <Route element={<Dashboard />} >
+        <Route index element={<BlogHandlingPage />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/jobs' element={<JobHandlingPage />} />
+      </Route>
+    </Routes>
   );
 }
 
