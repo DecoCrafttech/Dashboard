@@ -10,7 +10,6 @@
     "ag-grid-community": "^32.0.2",
     "ag-grid-react": "^32.0.2",
     "bootstrap": "^5.3.3",
-    "gh-pages": "^6.3.0",
     "quill": "^2.0.2",
     "react": "^18.3.1",
     "react-dom": "^18.2.0",
@@ -27,7 +26,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -b main -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -50,5 +49,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
