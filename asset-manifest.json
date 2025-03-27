@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Dashboard.git/static/css/main.5af15ca4.css",
+    "main.js": "/Dashboard.git/static/js/main.ad5126cb.js",
+    "index.html": "/Dashboard.git/index.html",
+    "main.5af15ca4.css.map": "/Dashboard.git/static/css/main.5af15ca4.css.map",
+    "main.ad5126cb.js.map": "/Dashboard.git/static/js/main.ad5126cb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5af15ca4.css",
+    "static/js/main.ad5126cb.js"
+  ]
+}
