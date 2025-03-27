@@ -8,7 +8,7 @@ import JobHandlingPage from './components/JobHandlingPage';
 
 function App() {
   return (
-    <Routes basename={process.env.PUBLIC_URL}>
+    <Routes>
       <Route element={<Dashboard />} >
         <Route index element={<BlogHandlingPage />} />
         <Route path='/login' element={<Login />} />
