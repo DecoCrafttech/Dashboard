@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import BlogHandlingPage from './components/Blog';
-import Login from './components/Login';
+import Teams from './components/TeamPage';
 import Dashboard from './components/Dashboard';
 import JobHandlingPage from './components/JobHandlingPage';
 
@@ -10,7 +10,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Dashboard />}>
         <Route index element={<BlogHandlingPage />} />
-        <Route path="login" element={<Login />} />
+        <Route path="login" element={<Teams />} />
         <Route path="jobs" element={<JobHandlingPage />} />
       </Route>
     </Routes>
