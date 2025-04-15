@@ -13,6 +13,15 @@
   }
 }
 
+.postbutton{
+  background-color: #2abc2a ;
+  font-weight: 500;
+  border-radius: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: #fff;
+  border: none;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

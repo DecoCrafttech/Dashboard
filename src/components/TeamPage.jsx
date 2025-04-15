@@ -111,13 +111,14 @@ const TeamsPage = () => {
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h2>Team Members</h2>
         <Button
+         className="postbutton"
           onClick={() => {
             setFormData({ name: "", position: "", description: "", image: null });
             setEditingMember(null);
             setShowModal(true);
           }}
         >
-          Add Team Member
+         + Add Team Member
         </Button>
       </div>
 

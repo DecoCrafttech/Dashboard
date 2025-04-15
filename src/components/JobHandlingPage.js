@@ -109,7 +109,9 @@ const JobPage = () => {
     <div className="container mt-5">
       <div className="d-flex justify-content-between mb-3">
         <h2>Job Listings</h2>
-        <Button onClick={() => {
+        <Button 
+        className="postbutton"
+        onClick={() => {
           setEditingJob(null);
           setFormData({
             job_title: "",
