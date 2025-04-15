@@ -131,9 +131,9 @@ const JobPage = () => {
           <div className="col-md-4 mb-4" key={job.id}>
             <div className="card h-100">
               <div className="card-header">
-              <h5 className="card-title m-0 p-3 bg-success rounded text-white py-3 my-2 ">{job.job_title}</h5>
+                <h5 className="card-title m-0 p-3 bg-success rounded text-white py-3 my-2 ">{job.job_title}</h5>
 
-                </div>
+              </div>
               <div className="card-body">
                 <h6 className="card-subtitle mb-2 ">{job.company} - <strong>{job.location}</strong></h6>
                 {/* <h6 className="card-title mb-2 ">{job.location}</h6>               */}
@@ -144,30 +144,56 @@ const JobPage = () => {
                     : job.job_description}
                 </p>
               </div>
-              <div className="card-footer d-flex justify-content-between">
-                <Button size="sm" variant="outline-primary" onClick={() => {
+              {/* <div className="card-footer justify-content-between d-flex  d-grid gap-2">
+                <Button  variant="outline-primary" onClick={() => {
                   setSelectedJob(job);
                   setShowDetailsModal(true);
                 }}>
                   View Details
                 </Button>
-                <Button size="sm" variant="success" onClick={() => handleEdit(job)}>
+                <Button  variant="success" onClick={() => handleEdit(job)}>
                   Edit
                 </Button>
-                <Button size="sm" variant="danger" onClick={() => {
+                <Button  variant="danger" onClick={() => {
                   setJobToDelete(job);
                   setShowDeleteModal(true);
                 }}>
                   Delete
                 </Button>
+              </div> */}
+              <div className="card-footer">
+                <div className="row g-2">
+                  <div className="">
+                    <Button size="sm" variant="outline-primary" className="w-100" onClick={() => {
+                      setSelectedJob(job);
+                      setShowDetailsModal(true);
+                    }}>
+                      View Details
+                    </Button>
+                  </div>
+                  <div className="col">
+                    <Button size="sm" variant="success" className="w-100" onClick={() => handleEdit(job)}>
+                      Edit
+                    </Button>
+                  </div>
+                  <div className="col">
+                    <Button size="sm" variant="danger" className="w-100" onClick={() => {
+                      setJobToDelete(job);
+                      setShowDeleteModal(true);
+                    }}>
+                      Delete
+                    </Button>
+                  </div>
+                </div>
               </div>
+
             </div>
           </div>
         ))}
       </div>
 
       {/* Add/Edit Modal */}
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
+      <Modal show={showModal} onHide={() => setShowModal(false)} >
         <Modal.Header closeButton>
           <Modal.Title>{editingJob ? "Edit Job" : "Add Job"}</Modal.Title>
         </Modal.Header>
@@ -224,10 +250,15 @@ const JobPage = () => {
       </Modal>
 
       {/* View Details Modal */}
-      <Modal show={showDetailsModal} onHide={() => setShowDetailsModal(false)}>
+      <Modal
+        show={showDetailsModal}
+        onHide={() => setShowDetailsModal(false)}
+        scrollable
+      >
         <Modal.Header closeButton>
           <Modal.Title>Job Details</Modal.Title>
         </Modal.Header>
+
         {selectedJob && (
           <Modal.Body>
             <h5>{selectedJob.job_title}</h5>
@@ -238,12 +269,14 @@ const JobPage = () => {
             <p><strong>Salary:</strong> ₹{selectedJob.salary}</p>
           </Modal.Body>
         )}
+
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowDetailsModal(false)}>
             Close
           </Button>
         </Modal.Footer>
       </Modal>
+
     </div>
   );
 };

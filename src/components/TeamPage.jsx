@@ -142,32 +142,46 @@ const TeamsPage = () => {
                   {member.description.length > 50
                     ? `${member.description.slice(0, 50)}...`
                     : member.description}
-                </p>              </div>
-              <div className="card-footer d-flex justify-content-between">
-                <Button size="sm" variant="success" onClick={() => handleEdit(member)}>
-                  Edit
-                </Button>
-                <Button
-                  size="sm"
-                  variant="danger"
-                  onClick={() => {
-                    setMemberToDelete(member);
-                    setShowDeleteModal(true);
-                  }}
-                >
-                  Delete
-                </Button>
-                <Button
-                  variant="outline-primary"
-                  size="sm"
-                  onClick={() => {
-                    setSelectedMember(member);
-                    setShowDetailsModal(true);
-                  }}
-                >
-                  View Details
-                </Button>
+                </p>
+              </div>
 
+              <div className="card-footer">
+                <div className="row g-2">
+                  <div className="">
+                    <Button
+                      variant="outline-primary"
+                      size="sm"
+                      className="w-100"
+                      onClick={() => {
+                        setSelectedMember(member);
+                        setShowDetailsModal(true);
+                      }}
+                    >
+                      View Details
+                    </Button>
+                  </div>
+                  <div className="col">
+                    <Button size="sm" 
+                    variant="success" 
+                    className="w-100"
+                    onClick={() => handleEdit(member)}>
+                      Edit
+                    </Button>
+                  </div>
+                  <div className="col">
+                    <Button
+                      size="sm"
+                      variant="danger"
+                      className="w-100"
+                      onClick={() => {
+                        setMemberToDelete(member);
+                        setShowDeleteModal(true);
+                      }}
+                    >
+                      Delete
+                    </Button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -175,7 +189,10 @@ const TeamsPage = () => {
       </div>
 
       {/* Add/Edit Modal */}
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
+      <Modal
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        scrollable>
         <Modal.Header closeButton>
           <Modal.Title>{editingMember ? "Edit" : "Add"} Team Member</Modal.Title>
         </Modal.Header>
@@ -232,7 +249,7 @@ const TeamsPage = () => {
           </Modal.Body>
 
           <Modal.Footer>
-            <Button variant="secondary" onClick={() => setShowModal(false)}>
+            <Button variant="secondary" onClick={() => setShowModal(false)} >
               Cancel
             </Button>
             <Button variant="primary" type="submit">
@@ -265,6 +282,7 @@ const TeamsPage = () => {
       <Modal
         show={showDetailsModal}
         onHide={() => setShowDetailsModal(false)}
+        scrollable
       >
         <Modal.Header closeButton>
           <Modal.Title>Team Member Details</Modal.Title>
