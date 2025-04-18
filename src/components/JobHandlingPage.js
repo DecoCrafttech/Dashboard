@@ -53,16 +53,31 @@ const JobPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
 
+    const payload = {
+      job_title: formData.job_title.trim(),
+      job_description: formData.job_description || "",
+      requirements: formData.requirements || "",
+      company: formData.company?.trim() || "",
+      location: formData.location?.trim() || "",
+      salary: formData.salary?.trim() || ""
+    };
+  
+    if (!payload.job_title || !payload.job_description || !payload.requirements) {
+      toast.error("Job Title, Description, and Requirements are required.");
+      return;
+    }
+  
     try {
       if (editingJob) {
-        await axios.patch(`${API_URL}${editingJob.id}/`, formData);
+        await axios.patch(`${API_URL}${editingJob.id}/`, payload);
         toast.success("Job updated successfully!");
       } else {
-        await axios.post(API_URL, formData);
+        await axios.post(API_URL, payload);
         toast.success("Job posted successfully!");
       }
-
+  
       fetchJobs();
       setShowModal(false);
       setEditingJob(null);
@@ -72,7 +87,7 @@ const JobPage = () => {
       toast.error("Failed to save job.");
     }
   };
-
+  
   const handleEdit = (job) => {
     setEditingJob(job);
     setFormData({ ...job });
@@ -193,7 +208,7 @@ const JobPage = () => {
                 name="company"
                 value={formData.company}
                 onChange={handleInputChange}
-                required
+                
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -203,7 +218,7 @@ const JobPage = () => {
                 name="location"
                 value={formData.location}
                 onChange={handleInputChange}
-                required
+                
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -227,7 +242,7 @@ const JobPage = () => {
                 name="salary"
                 value={formData.salary}
                 onChange={handleInputChange}
-                required
+                
               />
             </Form.Group>
           </Modal.Body>
