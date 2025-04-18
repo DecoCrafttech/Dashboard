@@ -124,7 +124,7 @@ const BlogHandlingPage = () => {
         data.append(key, value);
       }
     });
-    
+
 
     try {
       const url = editingBlog
@@ -161,7 +161,7 @@ const BlogHandlingPage = () => {
     <div className="container py-5">
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h2>Manage Blogs</h2>
-        <Button  className=" postbutton " onClick={() => { resetForm(); setShowModal(true); }}>
+        <Button className=" postbutton " onClick={() => { resetForm(); setShowModal(true); }}>
           + Post New Blog
         </Button>
       </div>
@@ -199,35 +199,123 @@ const BlogHandlingPage = () => {
 
       {/* Add/Edit Modal */}
       <Modal
-  show={showModal}
-  onHide={() => setShowModal(false)}
-  size="lg"
-  scrollable
->
-  <Modal.Header closeButton>
-    <Modal.Title>{editingBlog ? "Edit Blog" : "Add Blog"}</Modal.Title>
-  </Modal.Header>
-  <Form onSubmit={handleSubmit}>
-    <Modal.Body style={{ maxHeight: "70vh", overflowY: "auto" }}>
-      <Form.Control type="text" name="heading" placeholder="Heading" value={formData.heading} onChange={handleInputChange} className="mb-2" required />
-      <Form.Control type="text" name="sub_heading" placeholder="Sub Heading" value={formData.sub_heading} onChange={handleInputChange} className="mb-2" />
-      <Form.Control type="file" name="feature_image" accept="image/*" onChange={handleInputChange} className="mb-2" />
-      <Form.Control type="text" name="image_alt_text" placeholder="Image Alt Text" value={formData.image_alt_text} onChange={handleInputChange} className="mb-2" />
-      <Form.Control type="text" name="seo_title" placeholder="SEO Title" value={formData.seo_title} onChange={handleInputChange} className="mb-2" />
-      <Form.Control type="text" name="meta_description" placeholder="Meta Description" value={formData.meta_description} onChange={handleInputChange} className="mb-2" />
-      <Form.Label>Full Description</Form.Label>
-      <ReactQuill value={formData.full_description} onChange={handleQuillChange} className="mb-3" />
-      <Form.Control type="file" accept=".docx" onChange={handleDocxUpload} className="mb-2" />
-      <Form.Control type="text" name="tags" placeholder="Tags (comma-separated)" value={formData.tags} onChange={handleInputChange} className="mb-2" />
-    </Modal.Body>
-    <Modal.Footer>
-      <Button variant="secondary" onClick={() => setShowModal(false)}>Cancel</Button>
-      <Button variant="primary" type="submit" disabled={submitting}>
-        {submitting ? <Spinner animation="border" size="sm" /> : editingBlog ? "Update Blog" : "Publish Blog"}
-      </Button>
-    </Modal.Footer>
-  </Form>
-</Modal>
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        size="lg"
+        scrollable
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>{editingBlog ? "Edit Blog" : "Add Blog"}</Modal.Title>
+        </Modal.Header>
+        <Form onSubmit={handleSubmit}>
+          <Modal.Body style={{ maxHeight: "70vh", overflowY: "auto" }}>
+            <Form.Group className="mb-2">
+              <Form.Label>Heading</Form.Label>
+              <Form.Control
+                type="text"
+                name="heading"
+                placeholder="Enter your text here"
+                value={formData.heading}
+                onChange={handleInputChange}
+                required
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-2">
+              <Form.Label>Sub Heading</Form.Label>
+              <Form.Control
+                type="text"
+                name="sub_heading"
+                placeholder="Enter your text here"
+                value={formData.sub_heading}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-2">
+              <Form.Label>Featured  Image</Form.Label>
+              <Form.Control
+                type="file"
+                name="feature_image"
+                accept="image/*"
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-2">
+              <Form.Label>Featured Image Alt Tag</Form.Label>
+              <Form.Control
+                type="text"
+                name="image_alt_text"
+                placeholder="Enter your text here"
+                value={formData.image_alt_text}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+
+            <Form.Label>Full Description</Form.Label>
+            <ReactQuill value={formData.full_description} onChange={handleQuillChange} className="mb-3" />
+            <Form.Control type="file" accept=".docx" onChange={handleDocxUpload} className="mb-2" />
+
+            <Form.Group className="mb-2">
+              <Form.Label>Meta Title</Form.Label>
+              <Form.Control
+                type="text"
+                name="seo_title"
+                placeholder="Enter your text here"
+                value={formData.seo_title}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-2">
+              <Form.Label>Meta Tag</Form.Label>
+              <Form.Control
+                type="text"
+                // name="seo_title"
+                placeholder="Enter your text here"
+                // value={formData.seo_title}
+                // onChange={handleInputChange}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-2">
+              <Form.Label>Meta Description</Form.Label>
+              <Form.Control
+                type="text"
+                name="meta_description"
+                placeholder="Meta Description"
+                value={formData.meta_description}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+
+            
+            <Form.Group className="mb-2">
+              <Form.Label>Category (tags)</Form.Label>
+              <Form.Control type="text" name="tags" placeholder="Enter your Tags with (comma-separated)" value={formData.tags} onChange={handleInputChange} className="mb-2" />
+            </Form.Group>
+
+            <Form.Group className="mb-2">
+              <Form.Label>URL Slug</Form.Label>
+              <Form.Control
+                type="text"
+                // name="seo_title"
+                placeholder="Enter your text here"
+                // value={formData.seo_title}
+                // onChange={handleInputChange}
+              />
+            </Form.Group>
+
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={() => setShowModal(false)}>Cancel</Button>
+            <Button variant="primary" type="submit" disabled={submitting}>
+              {submitting ? <Spinner animation="border" size="sm" /> : editingBlog ? "Update Blog" : "Publish Blog"}
+            </Button>
+          </Modal.Footer>
+        </Form>
+      </Modal>
 
 
       {/* Delete Confirm Modal */}
