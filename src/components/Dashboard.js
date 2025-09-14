@@ -31,13 +31,18 @@ function SmartDashboard() {
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link onClick={toggleSmartNav} className={`nav-link ${location.pathname === '/login' ? 'active' : ''}`} to="/login">
+                        <Link onClick={toggleSmartNav} className={`nav-link ${location.pathname === '/teams' ? 'active' : ''}`} to="/teams">
                             <i className="fas fa-user"></i> Teams Dashboard
                         </Link>
                     </li>
                     <li className="nav-item">
                         <Link onClick={toggleSmartNav} className={`nav-link ${location.pathname === '/jobs' ? 'active' : ''}`} to="/jobs">
                             <i className="fas fa-briefcase"></i> Jobs Dashboard
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link onClick={toggleSmartNav} className={`nav-link ${location.pathname === '/global-settings' ? 'active' : ''}`} to="/global-settings">
+                            <i className="fa fa-cogs"></i> Global Dashboard
                         </Link>
                     </li>
                 </ul>

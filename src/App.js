@@ -5,6 +5,7 @@ import Teams from './components/TeamPage';
 import Dashboard from './components/Dashboard';
 import JobHandlingPage from './components/JobHandlingPage';
 import BlogDetails from './components/BlogDetails';
+import GlobalSettings from './components/GlobalSettings';
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
         <Route index element={<BlogHandlingPage />} />
         {/* <Route path="/blog"  element={<BlogList />} /> */}
           <Route path="/blog/:id" element={<BlogDetails />} />
-        <Route path="login" element={<Teams />} />
+        <Route path="teams" element={<Teams />} />
         <Route path="jobs" element={<JobHandlingPage />} />
+        <Route path="global-settings" element={<GlobalSettings />} />
       </Route>
     </Routes>
   );

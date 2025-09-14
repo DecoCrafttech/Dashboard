@@ -34,7 +34,9 @@ const BlogHandlingPage = () => {
   const fetchBlogs = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("https://api.admin.pixeladvant.com/api/blog_details/");
+      const res = await axios.get(
+        "https://api.admin.pixeladvant.com/api/blog_details/"
+      );
       setBlogs(res.data);
     } catch (err) {
       toast.error("Failed to load blogs");
@@ -125,7 +127,6 @@ const BlogHandlingPage = () => {
       }
     });
 
-
     try {
       const url = editingBlog
         ? `https://api.admin.pixeladvant.com/api/blog_details/${editingBlog}/`
@@ -148,7 +149,9 @@ const BlogHandlingPage = () => {
   const handleDelete = async () => {
     const id = deleteModal.id;
     try {
-      await axios.delete(`https://api.admin.pixeladvant.com/api/blog_details/${id}/`);
+      await axios.delete(
+        `https://api.admin.pixeladvant.com/api/blog_details/${id}/`
+      );
       toast.success("Blog deleted");
       setDeleteModal({ show: false, id: null });
       fetchBlogs();
@@ -161,7 +164,13 @@ const BlogHandlingPage = () => {
     <div className="container py-5">
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h2>Manage Blogs</h2>
-        <Button className=" postbutton " onClick={() => { resetForm(); setShowModal(true); }}>
+        <Button
+          className=" postbutton "
+          onClick={() => {
+            resetForm();
+            setShowModal(true);
+          }}
+        >
           + Post New Blog
         </Button>
       </div>
@@ -171,11 +180,17 @@ const BlogHandlingPage = () => {
         <div className="text-center">Loading blogs...</div>
       ) : (
         <div className="row">
+          {blogs.length === 0 && (
+            <p>No blogs available. Click "Post New Blog" to add one.</p>
+          )}
           {blogs.map((blog) => (
             <div className="col-md-4 mb-4" key={blog.id}>
               <div className="card h-100 shadow-sm bg-light p-2">
                 <img
-                  src={blog.feature_image || "https://via.placeholder.com/400x200?text=No+Image"}
+                  src={
+                    blog.feature_image ||
+                    "https://via.placeholder.com/400x200?text=No+Image"
+                  }
                   alt={blog.image_alt_text || "Blog Image"}
                   className="card-img-top border"
                   style={{ height: 200, objectFit: "cover" }}
@@ -183,11 +198,28 @@ const BlogHandlingPage = () => {
                 <div className="card-body d-flex flex-column">
                   <h5 className="card-title">{blog.heading}</h5>
                   <p className="card-text text-muted">{blog.sub_heading}</p>
-                  <Link to={`/blog/${blog.id}`} className="btn btn-outline-primary mt-auto">View Details</Link>
+                  <Link
+                    to={`/blog/${blog.id}`}
+                    className="btn btn-outline-primary mt-auto"
+                  >
+                    View Details
+                  </Link>
                 </div>
                 <div className="card-footer gap-3 d-flex justify-content-between">
-                  <Button size="sm" className="w-100" variant="success" onClick={() => openEditModal(blog)}>Edit</Button>
-                  <Button size="sm" className="w-100" variant="danger" onClick={() => setDeleteModal({ show: true, id: blog.id })}>
+                  <Button
+                    size="sm"
+                    className="w-100"
+                    variant="success"
+                    onClick={() => openEditModal(blog)}
+                  >
+                    Edit
+                  </Button>
+                  <Button
+                    size="sm"
+                    className="w-100"
+                    variant="danger"
+                    onClick={() => setDeleteModal({ show: true, id: blog.id })}
+                  >
                     Delete
                   </Button>
                 </div>
@@ -233,7 +265,7 @@ const BlogHandlingPage = () => {
             </Form.Group>
 
             <Form.Group className="mb-2">
-              <Form.Label>Featured  Image</Form.Label>
+              <Form.Label>Featured Image</Form.Label>
               <Form.Control
                 type="file"
                 name="feature_image"
@@ -254,8 +286,17 @@ const BlogHandlingPage = () => {
             </Form.Group>
 
             <Form.Label>Full Description</Form.Label>
-            <ReactQuill value={formData.full_description} onChange={handleQuillChange} className="mb-3" />
-            <Form.Control type="file" accept=".docx" onChange={handleDocxUpload} className="mb-2" />
+            <ReactQuill
+              value={formData.full_description}
+              onChange={handleQuillChange}
+              className="mb-3"
+            />
+            <Form.Control
+              type="file"
+              accept=".docx"
+              onChange={handleDocxUpload}
+              className="mb-2"
+            />
 
             <Form.Group className="mb-2">
               <Form.Label>Meta Title</Form.Label>
@@ -290,10 +331,16 @@ const BlogHandlingPage = () => {
               />
             </Form.Group>
 
-            
             <Form.Group className="mb-2">
               <Form.Label>Category (tags)</Form.Label>
-              <Form.Control type="text" name="tags" placeholder="Enter your Tags with (comma-separated)" value={formData.tags} onChange={handleInputChange} className="mb-2" />
+              <Form.Control
+                type="text"
+                name="tags"
+                placeholder="Enter your Tags with (comma-separated)"
+                value={formData.tags}
+                onChange={handleInputChange}
+                className="mb-2"
+              />
             </Form.Group>
 
             <Form.Group className="mb-2">
@@ -306,27 +353,43 @@ const BlogHandlingPage = () => {
                 // onChange={handleInputChange}
               />
             </Form.Group>
-
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={() => setShowModal(false)}>Cancel</Button>
+            <Button variant="secondary" onClick={() => setShowModal(false)}>
+              Cancel
+            </Button>
             <Button variant="primary" type="submit" disabled={submitting}>
-              {submitting ? <Spinner animation="border" size="sm" /> : editingBlog ? "Update Blog" : "Publish Blog"}
+              {submitting ? (
+                <Spinner animation="border" size="sm" />
+              ) : editingBlog ? (
+                "Update Blog"
+              ) : (
+                "Publish Blog"
+              )}
             </Button>
           </Modal.Footer>
         </Form>
       </Modal>
 
-
       {/* Delete Confirm Modal */}
-      <Modal show={deleteModal.show} onHide={() => setDeleteModal({ show: false, id: null })}>
+      <Modal
+        show={deleteModal.show}
+        onHide={() => setDeleteModal({ show: false, id: null })}
+      >
         <Modal.Header closeButton>
           <Modal.Title>Confirm Delete</Modal.Title>
         </Modal.Header>
         <Modal.Body>Are you sure you want to delete this blog?</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setDeleteModal({ show: false, id: null })}>Cancel</Button>
-          <Button variant="danger" onClick={handleDelete}>Delete</Button>
+          <Button
+            variant="secondary"
+            onClick={() => setDeleteModal({ show: false, id: null })}
+          >
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={handleDelete}>
+            Delete
+          </Button>
         </Modal.Footer>
       </Modal>
     </div>
